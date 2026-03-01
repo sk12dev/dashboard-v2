@@ -1,12 +1,15 @@
 <?php
 // apply_network.php
+//TO DO: Add section to sudo hostnamectl set-hostname <new-hostname> and 
+//update the /etc/hosts file with the new hostname
 header('Content-Type: application/json');
 
 /**
  * Convert dotted-decimal subnet mask (e.g. 255.255.255.0) to CIDR prefix length.
  * Returns null if the mask is invalid.
  */
-function subnet_mask_to_cidr($mask) {
+function subnet_mask_to_cidr($mask)
+{
     if (!filter_var($mask, FILTER_VALIDATE_IP)) {
         return null;
     }
