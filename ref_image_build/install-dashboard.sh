@@ -263,7 +263,7 @@ echo "####################################"
 echo "Installing and configuring syslog-ng"
 echo "####################################"
 echo
-apt-get install -y syslog-ng-core
+apt-get install -y syslog-ng
 
 echo "Copying the STEP Specific syslog-ng configuration files"
 cp -r /opt/dashboard-v2/ref_image_build/etc/syslog-ng/conf.d/. /etc/syslog-ng/conf.d/
