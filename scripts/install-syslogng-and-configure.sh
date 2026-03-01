@@ -24,11 +24,11 @@ echo "Copying the STEP Specific syslog-ng configuration files"
 cp /opt/dashboard-v2/etc/syslog-ng/conf.d/. /etc/syslog-ng/conf.d/
 
 echo "Creating SQL database for syslog-ng"
-mysql -u root -p -e "CREATE DATABASE ilog;"
-mysql -u root -p -e "CREATE USER 'ilog'@'localhost' IDENTIFIED BY 'ilogpassword';"
-mysql -u root -p -e "GRANT ALL PRIVILEGES ON ilog.* TO 'ilog'@'localhost';"
-mysql -u root -p -e "FLUSH PRIVILEGES;"
-mysql -u root -p ilog < /opt/dashboard-v2/etc/syslog-ng/create_ilog_db.sql
+mysql -u root -pstepaside -e "CREATE DATABASE ilog;"
+mysql -u root -pstepaside -e "CREATE USER 'ilog'@'localhost' IDENTIFIED BY 'ilogpassword';"
+mysql -u root -pstepaside -e "GRANT ALL PRIVILEGES ON ilog.* TO 'ilog'@'localhost';"
+mysql -u root -pstepaside -e "FLUSH PRIVILEGES;"
+mysql -u root -pstepaside ilog < /opt/dashboard-v2/etc/syslog-ng/create_ilog_db.sql
 
 
 echo "Restarting syslog-ng..."
