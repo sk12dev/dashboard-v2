@@ -1,5 +1,5 @@
 #!/bin/bash
-# STEP LibreNMS and Dependencies Installer
+# STEP - Installer for all tools and software for Appliance
 # Created by: Andy Hobbs
 # Version: 1.0.0
 # Date: 2026-02-28
@@ -242,16 +242,6 @@ echo "####################################################"
 echo "LibreNMS installation and configuration complete"
 echo "####################################################"
 
-
-# STEP Syslog-NG and Configure Installer
-# Created by: Andy Hobbs
-# Version: 1.0.0
-# Date: 2026-02-28
-# Description: This script is used to install syslog-ng and configure it for the STEP Dashboard.
-# make sure to run sudo bash first
-# Exit on any error
-
-
 echo
 echo "#########################################################"
 echo "Starting Syslog-NG Installation and Configuration..."
@@ -287,6 +277,30 @@ echo "####################################################"
 echo "Installing and Configuring STEP NetTools"
 echo "####################################################"
 # TO DO: Install and configure STEP NetTools
+
+echo "####################################################"
+echo "Installing and Configuring Customer Web Installer"
+echo "####################################################"
+# TO DO: Install and configure Customer Web Installer
+mkdir -p /opt/www/customer-web-installer
+chown -R www-data:www-data /opt/www/customer-web-installer
+chmod -R 755 /opt/www/customer-web-installer
+cp -r /opt/dashboard-v2/ref_image_build/etc/customer-web-installer/. /opt/www/customer-web-installer/
+chown -R www-data:www-data /opt/www/customer-web-installer
+chmod -R 755 /opt/www/customer-web-installer
+#Copy sudoers file for customer-web-installer
+cp -r /opt/dashboard-v2/ref_image_build/etc/sudoers.d/. /etc/sudoers.d/
+chown root:root /etc/sudoers.d/
+#Add the website config to the Nginx configuration
+cat << EOF > /etc/nginx/conf.d/customer-web-installer.conf
+server {
+ listen 80;
+ server_name customer-web-installer;
+ root /opt/www/customer-web-installer/html;
+ index index.php;
+}
+EOF
+
 
 echo "####################################################"
 echo "Installation and configuration complete"
