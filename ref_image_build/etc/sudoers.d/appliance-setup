@@ -1,0 +1,2 @@
+www-data ALL=(root) NOPASSWD: /usr/local/bin/apply-network-from-web.sh
+www-data ALL=(root) NOPASSWD: /usr/local/bin/configure-dashboard-from-web.sh

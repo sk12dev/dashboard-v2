@@ -251,7 +251,7 @@ echo "####################################################"
 # make sure to run sudo bash first
 # Exit on any error
 
-set -e
+
 echo
 echo "#########################################################"
 echo "Starting Syslog-NG Installation and Configuration..."
@@ -266,15 +266,28 @@ echo
 apt-get install -y syslog-ng-core
 
 echo "Copying the STEP Specific syslog-ng configuration files"
-cp /opt/dashboard-v2/etc/syslog-ng/conf.d/. /etc/syslog-ng/conf.d/
+cp /opt/dashboard-v2/ref_image_build/etc/syslog-ng/conf.d/. /etc/syslog-ng/conf.d/
 
 echo "Creating SQL database for syslog-ng"
-mysql -u root -pstepaside ilog < /opt/dashboard-v2/etc/syslog-ng/create_ilog_db.sql
+mysql -u root -pstepaside ilog < /opt/dashboard-v2/ref_image_build/etc/syslog-ng/create_ilog_db.sql
 
 
 echo "Restarting syslog-ng..."
 systemctl restart syslog-ng
 
+echo "####################################################"
+echo "Installing and configuring Oxidized"
+echo "####################################################"
+# TO DO: Install and configure Oxidized
 
+
+echo "####################################################"
+echo "Installing and Configuring STEP NetTools"
+echo "####################################################"
+# TO DO: Install and configure STEP NetTools
+
+echo "####################################################"
+echo "Installation and configuration complete"
+echo "####################################################"
 
 exit 0

@@ -1,2 +1,0 @@
-www-data ALL=(root) NOPASSWD: /usr/local/bin/apply_network.sh
-www-data ALL=(root) NOPASSWD: /usr/local/bin/install_librenms.sh
